@@ -1,0 +1,22 @@
+@media screen and (max-width: 768px) {
+  .td-mobile:nth-of-type(1):before {
+    content: '账号名';
+  }
+
+  .td-mobile:nth-of-type(2):before {
+    content: '创建时间';
+  }
+
+  .td-mobile:nth-of-type(3):before {
+    content: '操作';
+  }
+}
+
+.admin-table > *:nth-child(odd) {
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+.admin-table > * {
+  border-bottom: 1px solid var(--border-color);
+}

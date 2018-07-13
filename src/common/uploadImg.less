@@ -1,0 +1,45 @@
+@border-color: #bbb;
+.center-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.preview-img {
+  width: 270px;
+  display: inline-block;
+  margin: 0px 20px 20px 0px;
+  text-align: center;
+  img {
+    max-width: 100%;
+    border-radius: 15px;
+  }
+  .ivu-checkbox-wrapper {
+    font-size: 14px !important;
+  }
+}
+
+.upload {
+  width: 270px;
+  height: 120px;
+  border: 1px solid @border-color;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  border-radius: 15px;
+  top: 0px;
+  left: 0px;
+  .upload-icon {
+    position: absolute;
+    top: 25%;
+    left: 45%;
+  }
+  input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+}

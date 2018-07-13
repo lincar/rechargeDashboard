@@ -1,0 +1,13 @@
+npm-debug.log
+node_modules
+.project
+.vscode
+.history
+.DS_Store
+\.settings/
+src/config/env.js
+.idea/
+package-lock.json
+dist/src
+dist/dist
+dist/build
