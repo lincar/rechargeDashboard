@@ -33,7 +33,7 @@
           <el-input v-model="distributorItem.phone" class="w-5"></el-input>
         </div>
         <div class="edit-modal-item">
-          <span class="plr-sm">返利(%)</span>
+          <span class="plr-sm">佣金(%)</span>
           <el-input type="number" v-model="distributorItem.profit" class="w-5"></el-input>
         </div>
       </div>
@@ -69,7 +69,7 @@
             property: 'phone'
           },
           {
-            label: '返利(%)',
+            label: '佣金(%)',
             property: 'profit'
           },
           {

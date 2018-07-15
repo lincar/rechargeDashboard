@@ -69,6 +69,23 @@ export const appRouter = [
         }
       }
     ]
+  },
+  {
+    path: '/withdraw',
+    icon: 'android-folder',
+    name: 'withdraw',
+    title: '提现管理',
+    component: Main,
+    children: [
+      {
+        path: 'list',
+        title: '提现列表',
+        name: 'withdraw-list',
+        component: resolve => {
+          require(['./recharge/withdraw/list.vue'], resolve);
+        }
+      }
+    ]
   }
 ];
 
