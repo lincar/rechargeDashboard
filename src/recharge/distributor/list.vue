@@ -124,7 +124,9 @@
       },
 
       filterDistributorList(list) {
-
+        list.map(item => {
+          item.profit = item.profit * 100;
+        });
       },
 
       getDistributorList() {

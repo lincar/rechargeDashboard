@@ -35,6 +35,10 @@
           <span class="plr-sm">售价(元)</span>
           <el-input type="number" v-model="packageItem.price" class="w-5"></el-input>
         </div>
+        <div class="edit-modal-item">
+          <span class="plr-sm">排序</span>
+          <el-input type="number" v-model="packageItem.seq" class="w-5"></el-input>
+        </div>
       </div>
       <div slot="footer" class="text-center">
         <el-button @click="commitPackageItem()" type="primary">保存</el-button>
@@ -70,6 +74,10 @@
           {
             label: '售价(元)',
             property: 'price'
+          },
+          {
+            label: '排序',
+            property: 'seq'
           },
           {
             label: '操作',
@@ -123,13 +131,19 @@
       },
 
       filterPackageList(list) {
-        list.sort((x, y) => {
-          return x.type - y.type;
-        });
-
         list.map(item => {
+          item.seq = item.seq || 1;
           item.price = (item.price / 100).toFixed(2);
           item.typeName = item.type === 1 ? '话费' : '流量';
+        });
+
+        list.sort((x, y) => {
+          let typeFlag = x.type - y.type;
+          let seqFlag = x.seq - y.seq;
+          if (!typeFlag) {
+            return seqFlag;
+          }
+          return typeFlag;
         });
       },
 

@@ -16,7 +16,7 @@ export default class Distributor {
       data: {
         name: this.name,
         phone: this.phone,
-        profit: this.profit,
+        profit: this.profit / 100,
         username: this.username,
         password: this.password
       }
@@ -33,7 +33,7 @@ export default class Distributor {
       data: {
         name: this.name,
         phone: this.phone,
-        profit: this.profit,
+        profit: this.profit / 100,
         username: this.username
       }
     }).then(
