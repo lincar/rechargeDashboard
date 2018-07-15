@@ -16,22 +16,22 @@
       :append-to-body="true"
       :visible.sync="showEditModal">
       <div class="p-sm">
-        <div class="xy-center p-sm">
+        <div class="edit-modal-item">
           <span class="plr-sm">套餐名称</span>
           <el-input v-model="packageItem.name" class="w-5"></el-input>
         </div>
-        <div class="xy-center p-sm">
+        <div class="edit-modal-item">
           <span class="plr-sm">套餐代码</span>
           <el-input v-model="packageItem.code" class="w-5"></el-input>
         </div>
-        <div class="xy-center p-sm">
+        <div class="edit-modal-item">
           <span class="plr-sm">套餐类型</span>
           <el-select v-model="packageItem.type" class="w-5">
             <el-option :value="1" label="话费"></el-option>
             <el-option :value="2" label="流量"></el-option>
           </el-select>
         </div>
-        <div class="xy-center p-sm">
+        <div class="edit-modal-item">
           <span class="plr-sm">售价(元)</span>
           <el-input type="number" v-model="packageItem.price" class="w-5"></el-input>
         </div>
@@ -118,7 +118,7 @@
       },
 
       prevShowEditModal(obj) {
-        this.packageItem = obj || {type: 1, price: 0.00.toFixed(2)};
+        this.packageItem = obj || {type: 1, seq: 1, price: 0.00.toFixed(2)};
         this.showEditModal = true;
       },
 
@@ -146,5 +146,16 @@
 </script>
 
 <style scoped>
+  .edit-modal-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--sm);
+  }
 
+  .edit-modal-item span {
+    display: inline-block;
+    min-width: 6em;
+    text-align: right;
+  }
 </style>

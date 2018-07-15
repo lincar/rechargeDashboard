@@ -52,6 +52,23 @@ export const appRouter = [
         }
       }
     ]
+  },
+  {
+    path: '/distributor',
+    icon: 'android-folder',
+    name: 'distributor',
+    title: '分销商管理',
+    component: Main,
+    children: [
+      {
+        path: 'list',
+        title: '分销商列表',
+        name: 'distributor-list',
+        component: resolve => {
+          require(['./recharge/distributor/list.vue'], resolve);
+        }
+      }
+    ]
   }
 ];
 

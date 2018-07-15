@@ -1,7 +1,7 @@
 import Axios from '@/tool/axios.js';
 import {dateFormat} from '@/tool/transform.js';
 
-export default class Product {
+export default class Distributor {
   constructor(options) {
     options = options || {};
     for (let attr in options) {
@@ -11,14 +11,14 @@ export default class Product {
 
   add() {
     return Axios({
-      url: `/api/admin/recharge/product`,
+      url: `/api/admin/distributor`,
       method: 'post',
       data: {
         name: this.name,
-        price: this.price * 100,
-        code: this.code,
-        seq: this.seq,
-        type: this.type
+        phone: this.phone,
+        profit: this.profit,
+        username: this.username,
+        password: this.password
       }
     }).then(
       res => Promise.resolve(res),
@@ -28,14 +28,13 @@ export default class Product {
 
   edit() {
     return Axios({
-      url: `/api/admin/recharge/product/${this.id}`,
+      url: `/api/admin/distributor/${this.id}`,
       method: 'put',
       data: {
         name: this.name,
-        price: this.price * 100,
-        code: this.code,
-        seq: this.seq,
-        type: this.type
+        phone: this.phone,
+        profit: this.profit,
+        username: this.username
       }
     }).then(
       res => Promise.resolve(res),
@@ -45,7 +44,7 @@ export default class Product {
 
   delete() {
     return Axios({
-      url: `/api/admin/recharge/product/${this.id}`,
+      url: `/api/admin/distributor/${this.id}`,
       method: 'delete'
     }).then(
       res => Promise.resolve(res),
@@ -55,7 +54,7 @@ export default class Product {
 
   getList() {
     return Axios({
-      url: `/api/admin/recharge/product`,
+      url: `/api/admin/distributor`,
       method: 'get'
     }).then(
       res => {
