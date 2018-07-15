@@ -2,7 +2,7 @@
   <div class="main" :class="{'main-hide-text': hideMenuText}">
     <div :style="{width:hideMenuText?'0':'200px'}" class="sidebar-menu-con">
       <div class="logo-con">
-        <img src="../images/logo_large.png" key="max-logo"/>
+        <img src="../images/logo.jpg" key="max-logo"/>
       </div>
       <sidebar-menu :menuList="menuList" :iconSize="20"/>
     </div>

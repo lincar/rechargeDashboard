@@ -11,6 +11,7 @@ export const loginRouter = {
   component: resolve => {
     require(['./views/login.vue'], resolve);
   }
+
 };
 
 
@@ -18,23 +19,15 @@ export const loginRouter = {
 export const otherRouter = {
   path: '/',
   name: 'otherRouter',
-  redirect: '/graphic/list',
+  redirect: '/package/list',
   component: Main,
   children: [
     {
-      path: 'classify/edit',
-      title: '添加分类',
-      name: 'classify-edit',
+      path: 'package/edit',
+      title: '添加套餐',
+      name: 'package-edit',
       component: resolve => {
-        require(['./hospital/classify/edit.vue'], resolve);
-      }
-    },
-    {
-      path: 'graphic/edit',
-      title: '添加图文',
-      name: 'graphic-edit',
-      component: resolve => {
-        require(['./hospital/graphic/edit.vue'], resolve);
+        require(['./recharge/package/edit.vue'], resolve);
       }
     }
   ]
@@ -44,53 +37,18 @@ export const otherRouter = {
 //如果想保持组件keep-alive，组件名和name字段保持一致
 export const appRouter = [
   {
-    path: '/classify',
+    path: '/package',
     icon: 'android-folder',
-    name: 'classify',
-    title: '分类管理',
+    name: 'package',
+    title: '套餐管理',
     component: Main,
     children: [
       {
         path: 'list',
-        title: '分类列表',
-        name: 'classify-list',
+        title: '套餐列表',
+        name: 'package-list',
         component: resolve => {
-          require(['./hospital/classify/list.vue'], resolve);
-        }
-      }
-    ]
-  },
-  {
-    path: '/graphic',
-    icon: 'images',
-    name: 'graphic',
-    title: '图文管理',
-    component: Main,
-    children: [
-      {
-        path: 'list',
-        title: '图文列表',
-        name: 'graphic-list',
-        component: resolve => {
-          require(['./hospital/graphic/list.vue'], resolve);
-        }
-      }
-    ]
-  },
-  {
-    path: '/account',
-    icon: 'android-contacts',
-    name: 'account',
-    title: '账号管理',
-    component: Main,
-    children: [
-      {
-        path: 'list',
-        title: '账号列表',
-        icon: 'ios-list-outline',
-        name: 'account-list',
-        component: resolve => {
-          require(['./hospital/account/list.vue'], resolve);
+          require(['./recharge/package/list.vue'], resolve);
         }
       }
     ]
