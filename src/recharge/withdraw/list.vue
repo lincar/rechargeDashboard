@@ -41,11 +41,17 @@
         distributorList: [],
         withdrawSum: 0,
         search: {
-          status: 1,
+          status: 0,
           page: 1,
           pageSize: 15,
         },
-        tableConfig: [
+        tableConfig: []
+      }
+    },
+
+    watch: {
+      'search.status': function (status) {
+        let list = [
           {
             label: '分销商姓名',
             property: 'name'
@@ -65,17 +71,24 @@
           {
             label: '状态',
             property: 'statusName'
-          },
-          {
+          }
+        ];
+        if (status === 1) {
+          list.push({
             label: '操作',
             type: 'operating'
-          }
-        ]
+          })
+        }
+        this.tableConfig = list;
       }
     },
 
     components: {
       myTable
+    },
+
+    created() {
+      this.search.status = 1;
     },
 
     activated() {

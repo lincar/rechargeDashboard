@@ -86,6 +86,23 @@ export const appRouter = [
         }
       }
     ]
+  },
+  {
+    path: '/profit',
+    icon: 'android-folder',
+    name: 'profit',
+    title: '分成管理',
+    component: Main,
+    children: [
+      {
+        path: 'list',
+        title: '分成列表',
+        name: 'profit-list',
+        component: resolve => {
+          require(['./recharge/profit/list.vue'], resolve);
+        }
+      }
+    ]
   }
 ];
 
