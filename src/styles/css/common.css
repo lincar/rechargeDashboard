@@ -158,7 +158,7 @@ header.sticky {
   position: -webkit-sticky;
   top: 0;
   z-index: 2;
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 /* 颜色

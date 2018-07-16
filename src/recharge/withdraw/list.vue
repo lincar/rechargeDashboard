@@ -2,11 +2,18 @@
   <section class="plr-sm">
     <header class="y-center ptb-xs sticky">
       <span class="size-md bolder">提现列表</span>
+      <el-select @change="getWithdrawList()" class="mlr-sm" v-model="search.status">
+        <el-option :value="1" label="未处理"></el-option>
+        <el-option :value="2" label="已拒绝"></el-option>
+        <el-option :value="3" label="已提现"></el-option>
+      </el-select>
     </header>
     <my-table :data="withdrawList" :config="tableConfig">
       <div slot="operating" slot-scope="withdraw">
-        <el-button @click="agreeWithdraw(withdraw.item)" size="small" type="success">同意</el-button>
-        <el-button @click="rejectWithdraw(withdraw.item)" size="small" type="danger">拒绝</el-button>
+        <div v-if="withdraw.item.status===1">
+          <el-button @click="agreeWithdraw(withdraw.item,withdraw.index)" size="small" type="success">同意</el-button>
+          <el-button @click="rejectWithdraw(withdraw.item,withdraw.index)" size="small" type="danger">拒绝</el-button>
+        </div>
       </div>
     </my-table>
     <div v-if="withdrawList.length" class="text-center p-sm">
@@ -76,19 +83,32 @@
     },
 
     methods: {
-      agreeWithdraw(obj) {
+      agreeWithdraw(obj, index) {
         const that = this;
         that.$Modal.confirm({
           title: '提示',
-          content: '是否删除，请确认',
+          content: '是否同意，请确认',
           onOk: () => {
-
+            let withdraw = new Withdraw(obj);
+            withdraw.agree().then(() => {
+              that.withdrawList.splice(index, 1);
+            });
           }
         });
       },
 
-      rejectWithdraw(obj) {
-
+      rejectWithdraw(obj, index) {
+        const that = this;
+        that.$Modal.confirm({
+          title: '提示',
+          content: '是否拒绝，请确认',
+          onOk: () => {
+            let withdraw = new Withdraw(obj);
+            withdraw.reject().then(() => {
+              that.withdrawList.splice(index, 1);
+            });
+          }
+        });
       },
 
       filterWithdrawList(list) {

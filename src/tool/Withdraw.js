@@ -9,6 +9,34 @@ export default class Withdraw {
     }
   }
 
+  agree() {
+    return Axios({
+      url: `/api/admin/distributor/withdraw/approve`,
+      method: 'post',
+      isFormData: true,
+      data: {
+        withdrawId: this.id
+      }
+    }).then(
+      res => Promise.resolve(res),
+      err => Promise.reject(err)
+    );
+  }
+
+  reject() {
+    return Axios({
+      url: `/api/admin/distributor/withdraw/reject`,
+      method: 'post',
+      isFormData: true,
+      data: {
+        withdrawId: this.id
+      }
+    }).then(
+      res => Promise.resolve(res),
+      err => Promise.reject(err)
+    );
+  }
+
   getList(search) {
     return Axios({
       url: `/api/admin/distributor/withdraw`,
