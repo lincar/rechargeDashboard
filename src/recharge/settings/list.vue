@@ -5,7 +5,7 @@
     </header>
     <el-card>
       <el-row class="y-center ptb-md">
-        <el-col class="y-center" :span="10">
+        <el-col class="y-center" :span="8">
           <div class="plr-md">隐藏充值</div>
           <el-switch
             v-model="settings.isCheck"
@@ -13,7 +13,7 @@
             inactive-text="否">
           </el-switch>
         </el-col>
-        <el-col class="y-center" :span="10">
+        <el-col class="y-center" :span="8">
           <div class="plr-md">客服电话</div>
           <el-input class="w-5" v-model="settings.servicePhone"></el-input>
         </el-col>
