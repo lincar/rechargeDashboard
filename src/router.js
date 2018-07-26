@@ -103,6 +103,23 @@ export const appRouter = [
         }
       }
     ]
+  },
+  {
+    path: '/settings',
+    icon: 'android-folder',
+    name: 'settings',
+    title: '系统设置',
+    component: Main,
+    children: [
+      {
+        path: 'list',
+        title: '设置列表',
+        name: 'settings-list',
+        component: resolve => {
+          require(['./recharge/settings/list.vue'], resolve);
+        }
+      }
+    ]
   }
 ];
 
