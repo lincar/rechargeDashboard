@@ -60,7 +60,7 @@
   import Settings from '@/tool/classFactory/Settings.js';
 
   export default {
-    name: "product-list",
+    name: "settings-list",
     data() {
       return {
         settings: {}
