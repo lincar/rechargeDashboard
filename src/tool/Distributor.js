@@ -34,7 +34,8 @@ export default class Distributor {
         name: this.name,
         phone: this.phone,
         profit: this.profit / 100,
-        username: this.username
+        username: this.username,
+        password: this.password
       }
     }).then(
       res => Promise.resolve(res),

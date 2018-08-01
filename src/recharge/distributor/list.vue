@@ -24,7 +24,7 @@
           <span class="plr-sm">账号</span>
           <el-input v-model="distributorItem.username" class="w-5"></el-input>
         </div>
-        <div v-if="!distributorItem.id" class="edit-modal-item">
+        <div class="edit-modal-item">
           <span class="plr-sm">密码</span>
           <el-input type="password" v-model="distributorItem.password" class="w-5"></el-input>
         </div>
