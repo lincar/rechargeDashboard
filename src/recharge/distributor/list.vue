@@ -69,6 +69,10 @@
             property: 'phone'
           },
           {
+            label:'绑定链接',
+            property:'sharePath'
+          },
+          {
             label: '佣金(%)',
             property: 'profit'
           },
@@ -126,6 +130,7 @@
       filterDistributorList(list) {
         list.map(item => {
           item.profit = item.profit * 100;
+          item.sharePath = `page/index/index?distributorId=${item.id}`;
         });
       },
 
