@@ -2,6 +2,9 @@
   <section class="plr-sm">
     <header class="y-center ptb-xs sticky">
       <span class="size-md bolder">分成列表</span>
+      <el-input placeholder="请输入分销商姓名" class="mlr-sm w-3" v-model="search.keywords">
+        <el-button @click="getProfitList(1)" slot="append" icon="el-icon-search"></el-button>
+      </el-input>
     </header>
     <my-table :data="profitList" :config="tableConfig"></my-table>
     <div v-if="profitList.length" class="text-center p-sm">
@@ -31,6 +34,7 @@
         search: {
           page: 1,
           pageSize: 15,
+          keywords: ''
         },
         tableConfig: [
           {
@@ -94,9 +98,13 @@
         });
       },
 
-      getProfitList() {
+      getProfitList(page) {
         const that = this;
-        let search = that.search;
+        that.search.page = page || that.search.page;
+        let search = {...that.search};
+        if (!search.keywords) {
+          delete search.keywords;
+        }
         Profit.prototype.getList(search).then(res => {
           let list = res.data.data || [];
           that.filterProfitList(list);

@@ -7,6 +7,9 @@
         <el-option :value="2" label="已拒绝"></el-option>
         <el-option :value="3" label="已提现"></el-option>
       </el-select>
+      <el-input placeholder="请输入分销商姓名" class="w-3" v-model="search.keywords">
+        <el-button @click="getWithdrawList(1)" slot="append" icon="el-icon-search"></el-button>
+      </el-input>
     </header>
     <my-table :data="withdrawList" :config="tableConfig">
       <div slot="operating" slot-scope="withdraw">
@@ -44,6 +47,7 @@
           status: 0,
           page: 1,
           pageSize: 15,
+          keywords: ''
         },
         tableConfig: []
       }
@@ -158,9 +162,13 @@
         });
       },
 
-      getWithdrawList() {
+      getWithdrawList(page) {
         const that = this;
-        let search = that.search;
+        that.search.page = page || that.search.page;
+        let search = {...that.search};
+        if (!search.keywords) {
+          delete search.keywords;
+        }
         Withdraw.prototype.getList(search).then(res => {
           let list = res.data.data || [];
           that.filterWithdrawList(list);
