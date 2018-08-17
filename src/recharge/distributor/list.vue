@@ -3,6 +3,9 @@
     <header class="y-center ptb-xs sticky">
       <span class="size-md bolder">分销商列表</span>
       <el-button @click="prevShowEditModal()" class="mlr-sm" size="small" type="primary">添加分销商</el-button>
+      <el-input placeholder="请输入分销商姓名" class="w-3" v-model="search.keywords">
+        <el-button @click="getDistributorList(1)" slot="append" icon="el-icon-search"></el-button>
+      </el-input>
     </header>
     <my-table :data="distributorList" :config="tableConfig">
       <div slot="operating" slot-scope="distributor">
@@ -10,6 +13,15 @@
         <el-button @click="deleteDistributorItem(distributor.item,distributor.index)" size="small" type="danger">删除</el-button>
       </div>
     </my-table>
+    <div v-if="distributorList.length" class="text-center p-sm">
+      <el-pagination
+        @current-change="getDistributorList"
+        :current-page.sync="search.page"
+        :page-size="search.pageSize"
+        layout="total, prev, pager, next, jumper"
+        :total="distributorSum">
+      </el-pagination>
+    </div>
 
     <!--编辑分销商-->
     <el-dialog
@@ -52,9 +64,15 @@
     name: "distributor-list",
     data() {
       return {
+        search: {
+          keywords: '',
+          page: 1,
+          pageSize: 10
+        },
         showEditModal: false,
         distributorItem: {},
         distributorList: [],
+        distributorSum: 0,
         tableConfig: [
           {
             label: '姓名',
@@ -69,8 +87,8 @@
             property: 'phone'
           },
           {
-            label:'绑定链接',
-            property:'sharePath'
+            label: '绑定链接',
+            property: 'sharePath'
           },
           {
             label: '佣金(%)',
@@ -134,12 +152,15 @@
         });
       },
 
-      getDistributorList() {
+      getDistributorList(page = 1) {
         const that = this;
-        Distributor.prototype.getList().then(res => {
+        let search = that.search;
+        search.page = page;
+        Distributor.prototype.getList(search).then(res => {
           let list = res.data.data || [];
           that.filterDistributorList(list);
           that.distributorList.splice(0, that.distributorList.length, ...list);
+          that.distributorSum = res.data.extra.count || list.length * 2;
         });
       }
     }

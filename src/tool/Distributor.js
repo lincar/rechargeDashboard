@@ -53,10 +53,11 @@ export default class Distributor {
     );
   }
 
-  getList() {
+  getList(search) {
     return Axios({
       url: `/api/admin/distributor`,
-      method: 'get'
+      method: 'get',
+      params: search
     }).then(
       res => {
         res.data.data = res.data.data || [];
